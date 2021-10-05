@@ -4,10 +4,10 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch",
-    "start": "webpack serve --mode development"
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
+    "start": "cross-env NODE_ENV=development webpack serve --mode development --open"
   },
   "repository": {
     "type": "git",
@@ -21,15 +21,18 @@
   "homepage": "https://github.com/Erl777/Fullpage3d#readme",
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.3.0",
     "style-loader": "^3.3.0",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^9.0.1",
     "normalize.css": "^8.0.1"
   }
 }
