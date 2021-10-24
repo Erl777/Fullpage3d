@@ -24,6 +24,24 @@ const optimization = () => {
   return config
 }
 
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+
+const cssLoaders = extra => {
+  const loaders = [
+  {
+    loader: MiniCssExtractPlugin.loader,
+    options: {}
+  },
+    'css-loader'
+  ]
+
+  if(extra) {
+    loaders.push(extra)
+  }
+
+  return loaders
+}
+
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
@@ -34,7 +52,7 @@ module.exports = {
     main: './index.js'
   },
   output: {
-    filename: '[name].[contenthash].js',
+    filename: filename('js'),
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -65,28 +83,19 @@ module.exports = {
       ]
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: filename('css')
     })
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            //hmr: isDev,
-            //reloadAll: true
-          }
-        }, 'css-loader']
+        use: cssLoaders()
       },
-      // {
-      //   test: /\.(png|jpg|svg|gif|jpeg)$/,
-      //   loader: 'file-loader',
-      //   options: {
-      //     name: '[path][name].[ext]'
-      //   }
-      // }
+      {
+        test: /\.s[ac]ss$/,
+        use: cssLoaders('sass-loader')
+      },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
