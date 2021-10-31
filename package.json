@@ -9,6 +9,7 @@
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
     "start": "cross-env NODE_ENV=development webpack serve --mode development --open"
   },
+  "browserslist": "> 0.25%, not dead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Erl777/Fullpage3d.git"
@@ -20,6 +21,9 @@
   },
   "homepage": "https://github.com/Erl777/Fullpage3d#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.3.0",
@@ -36,6 +40,7 @@
     "webpack-dev-server": "^4.3.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "copy-webpack-plugin": "^9.0.1",
     "normalize.css": "^8.0.1"
   }
